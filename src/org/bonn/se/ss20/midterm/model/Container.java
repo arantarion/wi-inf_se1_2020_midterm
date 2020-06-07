@@ -1,5 +1,6 @@
 package org.bonn.se.ss20.midterm.model;
 
+import org.bonn.se.ss20.midterm.command.CommandInterface;
 import org.bonn.se.ss20.midterm.dto.UserStoryDTO;
 import org.bonn.se.ss20.midterm.util.LookAheadObjectInputStream;
 import org.bonn.se.ss20.midterm.entity.UserStory;
@@ -19,8 +20,11 @@ import java.util.stream.Collectors;
 public class Container {
 
     private List<UserStory> myStories = new ArrayList<>();
+    private final Stack<CommandInterface> history = new Stack<>();
+    private final List<String> actors = new ArrayList<>();
+    private final HashMap<String, CommandInterface> commands = new HashMap<>();
     private static Container singleContainerInstance = null;
-    private String fileExtension = ".data";
+    private final String fileExtension = ".data";
 
     private Container() {}
 

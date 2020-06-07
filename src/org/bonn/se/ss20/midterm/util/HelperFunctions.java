@@ -1,9 +1,7 @@
 package org.bonn.se.ss20.midterm.util;
 
 /**
- *
  * @author Henry Weckermann, Anton Drees
- *
  */
 
 public class HelperFunctions {
@@ -28,7 +26,7 @@ public class HelperFunctions {
 
     // Calculate priority based on Gloger's formula
     public static double calculatePriority(int overvalue, int penalty, int effort, int risk) {
-        return ((double)overvalue + (double)penalty) / ((double)effort + (double)risk);
+        return ((double) overvalue + (double) penalty) / ((double) effort + (double) risk);
     }
 
 }

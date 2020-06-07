@@ -1,15 +1,29 @@
 package org.bonn.se.ss20.midterm.dto;
 
+import org.bonn.se.ss20.midterm.entity.UserStory;
+import org.bonn.se.ss20.midterm.util.HelperFunctions;
+
 /**
  *
  * @author Henry Weckermann, Anton Drees
  *
  */
 
-public class UserStoryDTO {
+public class UserStoryDTO implements Comparable<UserStoryDTO> {
+    private int id;
     private String title;
     private double priority;
-    private int id;
+
+
+    public UserStoryDTO(UserStory userStory) {
+        this.id = userStory.getId();
+        this.title = userStory.getTitle();
+        this.priority = HelperFunctions.calculatePriority(
+                userStory.getMehrwert(),
+                userStory.getStrafe(),
+                userStory.getAufwand(),
+                userStory.getRisiko());
+    }
 
     public String getTitle() {
         return title;
@@ -35,8 +49,20 @@ public class UserStoryDTO {
         this.id = id;
     }
 
+    @Override
     public String toString() {
-        return this.getId() + ": " + this.getTitle()
-                + ", Priority: " + this.getPriority();
+        return "User Story: " + id + "\n" +
+                "Title: " + title + "\n" +
+                "Priority: " + priority;
+    }
+
+    @Override
+    public int compareTo(UserStoryDTO o) {
+        if (priority == o.priority) {
+            return 0;
+        } else if (priority < o.priority) {
+            return 1;
+        }
+        return -1;
     }
 }

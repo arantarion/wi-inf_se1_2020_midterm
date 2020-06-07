@@ -14,56 +14,56 @@ public class UserStory implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String title;
-    private Integer overvalue;
-    private Integer penalty;
-    private Integer effort;
-    private Integer risk;
+    private Integer mehrwert;
+    private Integer strafe;
+    private Integer aufwand;
+    private Integer risiko;
     private double priority;
     private boolean completed;
 
-    public UserStory(int id, String title, int overvalue, int penalty, int effort, int risk) {
+    public UserStory(int id, String title, int mehrwert, int strafe, int auswand, int risiko) {
 
         setId( id );
         setTitle( title );
-        setOvervalue( overvalue );
-        setPenalty( penalty );
-        setEffort( effort );
-        setRisk( risk );
+        setMehrwert( mehrwert );
+        setStrafe( strafe );
+        setAufwand( auswand );
+        setRisiko( risiko );
         setCompleted( false );
-        setPriority(HelperFunctions.glogerFormular(overvalue, penalty, effort, risk));
+        setPriority(HelperFunctions.glogerFormular(mehrwert, strafe, auswand, risiko));
 
     }
 
-    public Integer getOvervalue() {
-        return overvalue;
+    public Integer getMehrwert() {
+        return mehrwert;
     }
 
-    public void setOvervalue(Integer overvalue) {
-        this.overvalue = overvalue;
+    public void setMehrwert(Integer mehrwert) {
+        this.mehrwert = mehrwert;
     }
 
-    public Integer getPenalty() {
-        return penalty;
+    public Integer getStrafe() {
+        return strafe;
     }
 
-    public void setPenalty(Integer penalty) {
-        this.penalty = penalty;
+    public void setStrafe(Integer strafe) {
+        this.strafe = strafe;
     }
 
-    public Integer getEffort() {
-        return effort;
+    public Integer getAufwand() {
+        return aufwand;
     }
 
-    public void setEffort(Integer effort) {
-        this.effort = effort;
+    public void setAufwand(Integer auswand) {
+        this.aufwand = auswand;
     }
 
-    public Integer getRisk() {
-        return risk;
+    public Integer getRisiko() {
+        return risiko;
     }
 
-    public void setRisk(Integer risk) {
-        this.risk = risk;
+    public void setRisiko(Integer risiko) {
+        this.risiko = risiko;
     }
 
     public Integer getId() {
@@ -98,10 +98,10 @@ public class UserStory implements java.io.Serializable {
 
     public String toString() {
         return this.getId() + ": " + this.getTitle()
-                + ", Overvalue: " + this.getOvervalue()
-                + ", Penalty: " + this.getPenalty()
-                + ", Risk: " + this.getRisk()
-                + ", Effort: " + this.getEffort()
+                + ", Mehrwert: " + this.getMehrwert()
+                + ", Strafe: " + this.getStrafe()
+                + ", Risiko: " + this.getRisiko()
+                + ", Aufwand: " + this.getAufwand()
                 + ", Priority: " + this.getPriority();
     }
 }

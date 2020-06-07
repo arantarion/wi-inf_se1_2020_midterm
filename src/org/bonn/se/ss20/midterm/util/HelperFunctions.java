@@ -27,7 +27,7 @@ public class HelperFunctions {
     }
 
     // Calculate priority based on Gloger's formula
-    public static double glogerFormular(int overvalue, int penalty, int effort, int risk) {
+    public static double calculatePriority(int overvalue, int penalty, int effort, int risk) {
         return ((double)overvalue + (double)penalty) / ((double)effort + (double)risk);
     }
 

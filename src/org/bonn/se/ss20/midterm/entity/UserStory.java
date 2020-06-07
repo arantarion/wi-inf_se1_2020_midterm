@@ -21,7 +21,6 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
     private boolean completed;
 
     public UserStory(int id, String title, int mehrwert, int strafe, int auswand, int risiko) {
-
         setId(id);
         setTitle(title);
         setMehrwert(mehrwert);
@@ -30,8 +29,9 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
         setRisiko(risiko);
         setCompleted(false);
         setPriority(HelperFunctions.calculatePriority(mehrwert, strafe, auswand, risiko));
-
     }
+
+    public UserStory() {}
 
     public String getDescription() {
         return description;

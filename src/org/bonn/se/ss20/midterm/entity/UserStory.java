@@ -1,19 +1,18 @@
 package org.bonn.se.ss20.midterm.entity;
 
 import org.bonn.se.ss20.midterm.util.HelperFunctions;
+
 import java.text.DecimalFormat;
 
 /**
- *
  * @author Henry Weckermann, Anton Drees
- *
  */
 
-public class UserStory implements java.io.Serializable {
+public class UserStory implements java.io.Serializable, Comparable<UserStory> {
 
     private static final long serialVersionUID = 1L;
     private Integer id;
-    private String title;
+    private String title, description, details, akzeptanz, epic, actor;
     private Integer mehrwert;
     private Integer strafe;
     private Integer aufwand;
@@ -23,15 +22,55 @@ public class UserStory implements java.io.Serializable {
 
     public UserStory(int id, String title, int mehrwert, int strafe, int auswand, int risiko) {
 
-        setId( id );
-        setTitle( title );
-        setMehrwert( mehrwert );
-        setStrafe( strafe );
-        setAufwand( auswand );
-        setRisiko( risiko );
-        setCompleted( false );
-        setPriority(HelperFunctions.glogerFormular(mehrwert, strafe, auswand, risiko));
+        setId(id);
+        setTitle(title);
+        setMehrwert(mehrwert);
+        setStrafe(strafe);
+        setAufwand(auswand);
+        setRisiko(risiko);
+        setCompleted(false);
+        setPriority(HelperFunctions.calculatePriority(mehrwert, strafe, auswand, risiko));
 
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public String getAkzeptanz() {
+        return akzeptanz;
+    }
+
+    public void setAkzeptanz(String akzeptanz) {
+        this.akzeptanz = akzeptanz;
+    }
+
+    public String getEpic() {
+        return epic;
+    }
+
+    public void setEpic(String epic) {
+        this.epic = epic;
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
     }
 
     public Integer getMehrwert() {
@@ -86,22 +125,35 @@ public class UserStory implements java.io.Serializable {
         return new DecimalFormat("##.##").format(this.priority);
     }
 
-    public double getPriorityDouble() { return this.priority; }
+    public double getPriorityDouble() {
+        return this.priority;
+    }
 
     public void setPriority(double priority) {
         this.priority = priority;
     }
 
-    public void setCompleted(boolean status) { this.completed = status; }
+    public void setCompleted(boolean status) {
+        this.completed = status;
+    }
 
-    public boolean getCompleted() { return this.completed; }
+    public boolean getCompleted() {
+        return this.completed;
+    }
+
+    @Override
+    public int compareTo(UserStory o) {
+        if (getPriorityDouble() == o.getPriorityDouble()) {
+            return 0;
+        } else if (getPriorityDouble() < o.getPriorityDouble()) {
+            return 1;
+        }
+        return -1;
+    }
 
     public String toString() {
-        return this.getId() + ": " + this.getTitle()
-                + ", Mehrwert: " + this.getMehrwert()
-                + ", Strafe: " + this.getStrafe()
-                + ", Risiko: " + this.getRisiko()
-                + ", Aufwand: " + this.getAufwand()
-                + ", Priority: " + this.getPriority();
+        return "User Story " + this.getId() + "\n" +
+                "Title: " + this.getTitle() + "\n" +
+                "Priority: " + this.getPriority();
     }
 }

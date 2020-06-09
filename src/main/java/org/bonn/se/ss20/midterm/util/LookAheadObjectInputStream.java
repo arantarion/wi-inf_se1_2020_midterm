@@ -1,17 +1,15 @@
 package org.bonn.se.ss20.midterm.util;
 
 import java.io.*;
-import java.util.*;
+import java.util.Set;
 
 /**
- *
  * @author Henry Weckermann, Anton Drees
- *
  */
 
 public class LookAheadObjectInputStream extends ObjectInputStream {
 
-    private Set whitelist;
+    private final Set whitelist;
 
     public LookAheadObjectInputStream(InputStream inputStream, Set wl) throws IOException {
         super(inputStream);

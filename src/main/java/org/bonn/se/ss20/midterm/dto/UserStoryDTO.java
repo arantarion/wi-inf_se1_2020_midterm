@@ -3,6 +3,8 @@ package org.bonn.se.ss20.midterm.dto;
 import org.bonn.se.ss20.midterm.entity.UserStory;
 import org.bonn.se.ss20.midterm.util.HelperFunctions;
 
+import java.text.DecimalFormat;
+
 /**
  * @author Henry Weckermann, Anton Drees
  */
@@ -31,8 +33,12 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
         this.title = title;
     }
 
-    public double getPriority() {
+    public double getPriorityDouble() {
         return priority;
+    }
+
+    public String getPriority() {
+        return new DecimalFormat("##.##").format(this.priority);
     }
 
     public void setPriority(double priority) {
@@ -51,7 +57,8 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
     public String toString() {
         return "User Story: " + id + "\n" +
                 "Title: " + title + "\n" +
-                "Priority: " + priority;
+                "Priority: " + getPriority() +
+                "\n---------------------------------";
     }
 
     @Override

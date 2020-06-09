@@ -19,6 +19,7 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
     private Integer risiko;
     private double priority;
     private boolean completed;
+    private String status;
 
     public UserStory(int id, String title, int mehrwert, int strafe, int auswand, int risiko) {
         setId(id);
@@ -31,7 +32,8 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
         setPriority(HelperFunctions.calculatePriority(mehrwert, strafe, auswand, risiko));
     }
 
-    public UserStory() {}
+    public UserStory() {
+    }
 
     public String getDescription() {
         return description;
@@ -125,20 +127,28 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
         return new DecimalFormat("##.##").format(this.priority);
     }
 
+    public void setPriority(double priority) {
+        this.priority = priority;
+    }
+
     public double getPriorityDouble() {
         return this.priority;
     }
 
-    public void setPriority(double priority) {
-        this.priority = priority;
+    public boolean getCompleted() {
+        return this.completed;
     }
 
     public void setCompleted(boolean status) {
         this.completed = status;
     }
 
-    public boolean getCompleted() {
-        return this.completed;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

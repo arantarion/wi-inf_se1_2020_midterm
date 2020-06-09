@@ -1,16 +1,9 @@
 package org.bonn.se.ss20.midterm.model;
 
 import org.bonn.se.ss20.midterm.command.CommandInterface;
-import org.bonn.se.ss20.midterm.dto.UserStoryDTO;
 import org.bonn.se.ss20.midterm.entity.UserStory;
 import org.bonn.se.ss20.midterm.exception.ContainerException;
-import org.bonn.se.ss20.midterm.util.LookAheadObjectInputStream;
-import org.bonn.se.ss20.midterm.view.Console;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,12 +13,11 @@ import java.util.stream.Collectors;
 
 public class Container {
 
-    private List<UserStory> myStories = new ArrayList<>();
+    private static Container singleContainerInstance = null;
     private final Stack<CommandInterface> history = new Stack<>();
     private final List<String> actors = new ArrayList<>();
     private final HashMap<String, CommandInterface> commands = new HashMap<>();
-    private static Container singleContainerInstance = null;
-    private final String fileExtension = ".data";
+    private List<UserStory> myStories = new ArrayList<>();
 
     private Container() {
     }
@@ -50,30 +42,49 @@ public class Container {
                 .filter(story -> story.getId() != null)
                 .filter(story -> story.getId().equals(id))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("User Story with ID: " + id + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("User Story with ID " + id + " not found"));
+    }
+
+    public void setMyStories(List<UserStory> stories) {
+        myStories = stories;
+    }
+
+    public int getHighestId() {
+        if (myStories.size() == 0) {
+            return 0;
+        }
+        List<UserStory> stories = getUserStories(false);
+        UserStory maxID;
+
+        maxID = stories.stream().max(Comparator.comparing(UserStory::getId)).get();
+        return maxID.getId();
+
+        /*for(UserStory story: stories){
+            ids.add(story.getId());
+        }
+        stories.forEach(story -> ids.add(story.getId()));
+
+        Collections.sort(ids);
+*/
+
     }
 
     public void addUserStory(UserStory userStory) throws ContainerException {
-        if (getUserStory(userStory.getId()) != null) {
-            myStories.add(userStory);
-        } else {
-            throw new ContainerException("User story with ID  " + userStory.getId() + " already exists. Please choose a unique ID!");
-        }
 
-        //legacy version
-//        for (UserStory u : myStories) {
-//            if (userStory.getId().intValue() == u.getId().intValue()) {
-//                throw new ContainerException("User story with ID  " + u.getId() + " already exists. Please choose a unique ID!");
-//            }
-//        }
-//        myStories.add(userStory);
+        for (UserStory u : myStories) {
+            if (userStory.getId().equals(u.getId())) {
+                throw new ContainerException("User story with ID  " + u.getId() + " already exists. Please choose a unique ID!");
+            }
+        }
+        myStories.add(userStory);
+
     }
 
     public boolean containsUserStory(Integer id) {
         return getUserStory(id) != null;
     }
 
-    public void removeUserStroy(Integer id) {
+    public void removeUserStory(Integer id) {
         int index = getIndexOf(id);
         try {
             myStories.remove(index);
@@ -157,15 +168,35 @@ public class Container {
         return command;
     }
 
-    public Set<String> getAllCommands() {
-        return commands.keySet();
+    public List<String> getAllCommands() {
+        return commands.keySet().stream().sorted().collect(Collectors.toList());
+    }
+
+    public void getCompleteHelp() {
+        System.out.println("\n");
+
+        Map<String, CommandInterface> result = commands.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+        for (CommandInterface command : result.values()) {
+            System.out.println(command.usage());
+            System.out.println("\n------------------------------------------------------------------------------\n");
+        }
+    }
+
+    public void getHelp(String command) {
+        System.out.println(commands.get(command).usage());
     }
 
 
     /*
         Extra
      */
-    private int size() {
+    public int size() {
         return myStories.size();
     }
 

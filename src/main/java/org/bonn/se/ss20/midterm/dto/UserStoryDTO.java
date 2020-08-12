@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 public class UserStoryDTO implements Comparable<UserStoryDTO> {
     private int id;
     private String title;
+    private String status;
     private double priority;
 
 
@@ -23,6 +24,7 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
                 userStory.getStrafe(),
                 userStory.getAufwand(),
                 userStory.getRisiko());
+        this.status = userStory.getStatus();
     }
 
     public String getTitle() {
@@ -53,11 +55,20 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
         this.id = id;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "User Story: " + id + "\n" +
                 "Title: " + title + "\n" +
-                "Priority: " + getPriority() +
+                "Priority: " + getPriority() + "\n" +
+                "Status: " + getStatus() +
                 "\n---------------------------------";
     }
 

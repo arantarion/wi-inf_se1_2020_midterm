@@ -30,6 +30,7 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
         setRisiko(risiko);
         setCompleted(false);
         setPriority(HelperFunctions.calculatePriority(mehrwert, strafe, auswand, risiko));
+        setStatus("");
     }
 
     public UserStory() {
@@ -164,6 +165,7 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
     public String toString() {
         return "User Story " + this.getId() + "\n" +
                 "Title: " + this.getTitle() + "\n" +
-                "Priority: " + this.getPriority();
+                "Priority: " + this.getPriority() + "\n" +
+                "Status: " + this.getStatus();
     }
 }

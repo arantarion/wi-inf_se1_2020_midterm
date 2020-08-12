@@ -23,6 +23,6 @@ public class ExitCommand implements CommandInterface {
         return "Command\n" +
                 "\texit - quit the program\n\n" +
                 "Usage\n" +
-                "\texit\n\n";
+                "\texit";
     }
 }

@@ -8,23 +8,29 @@ public class StatusCommand implements CommandInterface {
 
     @Override
     public void execute(String[] params) {
-        if (params.length != 3) {
+
+        if (params.length != 2) {
             System.out.println("invalid use of command. please see \"help analyze\"");
+            return;
         }
 
-        if (!HelperFunctions.isNumeric(params[1])) {
+        if (!HelperFunctions.isNumeric(params[0])) {
             System.out.println("Please specify a valid user story ID");
-        } else if (!Container.getInstance().containsUserStory(Integer.parseInt(params[1]))) {
-            System.out.println("There is no user story with the id: " + params[1]);
+            return;
+        } else if (!Container.getInstance().containsUserStory(Integer.parseInt(params[0]))) {
+            System.out.println("There is no user story with the id: " + params[0]);
+            return;
         }
 
-        if (!HelperFunctions.isValidStatus(params[2])) {
+        if (!HelperFunctions.isValidStatus(params[1])) {
             System.out.println("Please use 'done', 'progress' or 'todo' as status");
+            return;
         }
 
-        int userStoryID = Integer.parseInt(params[1]);
+        int userStoryID = Integer.parseInt(params[0]);
         UserStory userStory = Container.getInstance().getUserStory(userStoryID);
-        userStory.setStatus(params[2]);
+        userStory.setStatus(params[1]);
+        System.out.println("Successfully set the status of user story with ID " + userStoryID + " to '" + params[1] + "'");
 
     }
 

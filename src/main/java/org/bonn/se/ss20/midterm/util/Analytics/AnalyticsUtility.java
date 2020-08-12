@@ -8,49 +8,6 @@ import java.util.List;
 public class AnalyticsUtility {
 
 
-    public void analyze(String[] params) {
-        if (params == null) {
-            params = new String[0];
-        }
-
-        if (params.length != 1 && params.length != 3 && params.length != 5) {
-            if (params[1].equals("-")) {
-                System.out.println("command not found. please see \"help analyze\"");
-            }
-        }
-
-        switch (params.length) {
-            case 1:
-                try {
-                    AnalyticsUtility.analyze(Integer.parseInt(params[0]));
-                } catch (NumberFormatException ex) {
-                    System.out.println("please use a valid id");
-                }
-            case 2:
-                if (params[0].equals("-") && params[1].equals("all")) {
-                    analyzeAll();
-                }
-                break;
-            case 3:
-                analyze(Integer.parseInt(params[0])); //TODO catch
-                if (params[2].equals("details")) {
-                    printDetails(Integer.parseInt(params[0]));
-                }
-                break;
-            case 5:
-                analyze(Integer.parseInt(params[0])); //TODO catch
-                if (params[2].equals("details")) {
-                    printDetails(Integer.parseInt(params[0]));
-
-                    if (params[3].equals("-") && params[4].equals("hints")) {
-                        printHints(Integer.parseInt(params[0]));
-                    }
-                }
-                break;
-        }
-    }
-
-
     private static int analyzeShortcommings(UserStory us) {
         int count = 0;
 
@@ -93,7 +50,6 @@ public class AnalyticsUtility {
         return count;
     }
 
-
     private static int analyseSentenceStructure(UserStory us) {
         int count = 0;
 
@@ -113,7 +69,6 @@ public class AnalyticsUtility {
         return count;
     }
 
-
     private static void analyze(Integer id) {
         if (Container.getInstance().containsUserStory(id)) {
             int points = AnalyticsUtility.verdict(Container.getInstance().getUserStory(id));
@@ -124,7 +79,6 @@ public class AnalyticsUtility {
         }
     }
 
-
     private static void analyzeAll() {
         List<UserStory> list = Container.getInstance().getUserStories(false);
         int points = list.stream().mapToInt(AnalyticsUtility::verdict).sum();
@@ -133,7 +87,6 @@ public class AnalyticsUtility {
         System.out.println("Grade: " + getGrade(points / list.size()));
 
     }
-
 
     private static void printDetails(Integer id) {
         UserStory userStory = Container.getInstance().getUserStory(id);
@@ -150,7 +103,6 @@ public class AnalyticsUtility {
 
     }
 
-
     private static void printHints(Integer id) {
         UserStory userStory = Container.getInstance().getUserStory(id);
         System.out.println("\nHints: ");
@@ -163,7 +115,6 @@ public class AnalyticsUtility {
         analyzeActor(userStory.getActor(), "Specify an actor for your user story", "Add the actor %s to the list \n or change the actor (for more info see 'help'");
     }
 
-
     private static boolean analyseText(String type, String warning, int maxWords, String hint) {
         if (type.equals("")) {
             System.out.println(warning);
@@ -175,16 +126,13 @@ public class AnalyticsUtility {
         return true;
     }
 
-
     private static int verdict(UserStory userStory) {
         return 1000 - determineQuality(userStory);
     }
 
-
     private static int determineQuality(UserStory userStory) {
         return analyzeShortcommings(userStory) + analyseSentenceStructure(userStory);
     }
-
 
     private static String getGrade(Integer points) {
         if (points == 100) {
@@ -200,16 +148,13 @@ public class AnalyticsUtility {
         }
     }
 
-
     private static int wc(String s) {
         return s.split(" ").length;
     }
 
-
     private static int analyseSentence(String sentence, char sign) {
         return (int) sentence.chars().filter(ch -> ch == sign).count();
     }
-
 
     private static boolean analyzeActor(String actor, String warning, String warning2) {
         if (actor.equals("")) {
@@ -220,6 +165,48 @@ public class AnalyticsUtility {
             return false;
         }
         return true;
+    }
+
+    public void analyze(String[] params) {
+        if (params == null) {
+            params = new String[0];
+        }
+
+        if (params.length != 1 && params.length != 3 && params.length != 5) {
+            if (params[1].equals("-")) {
+                System.out.println("command not found. please see \"help analyze\"");
+            }
+        }
+
+        switch (params.length) {
+            case 1:
+                try {
+                    AnalyticsUtility.analyze(Integer.parseInt(params[0]));
+                } catch (NumberFormatException ex) {
+                    System.out.println("please use a valid id");
+                }
+            case 2:
+                if (params[0].equals("-") && params[1].equals("all")) {
+                    analyzeAll();
+                }
+                break;
+            case 3:
+                analyze(Integer.parseInt(params[0])); //TODO catch
+                if (params[2].equals("details")) {
+                    printDetails(Integer.parseInt(params[0]));
+                }
+                break;
+            case 5:
+                analyze(Integer.parseInt(params[0])); //TODO catch
+                if (params[2].equals("details")) {
+                    printDetails(Integer.parseInt(params[0]));
+
+                    if (params[3].equals("-") && params[4].equals("hints")) {
+                        printHints(Integer.parseInt(params[0]));
+                    }
+                }
+                break;
+        }
     }
 }
 

@@ -52,6 +52,11 @@ public class StoreCommand implements CommandInterface {
 
     @Override
     public String usage() {
-        return null;//TODO
+        return "Command\n" +
+                "\tstore - save all user stories locally to your machine\n\n" +
+                "Usage\n" +
+                "\tstore -> then specify a path or filename\n\n" +
+                "See also\n" +
+                "\tload - load user stories from a local file";
     }
 }

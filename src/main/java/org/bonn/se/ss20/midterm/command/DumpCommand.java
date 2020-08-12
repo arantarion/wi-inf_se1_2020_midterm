@@ -25,6 +25,11 @@ public class DumpCommand implements CommandInterface {
 
     @Override
     public String usage() {
-        return null;//TODO
+        return "Command\n" +
+                "\tdump - Lists all user stories\n\n" +
+                "Usage\n" +
+                "\tdump\n\n" +
+                "See also\n" +
+                "\tdumpUndone - list just undone user stories";
     }
 }

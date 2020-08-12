@@ -25,6 +25,9 @@ public class UndoCommand implements CommandInterface {
 
     @Override
     public String usage() {
-        return null;//TODO
+        return "Command\n" +
+                "\tundo - undo the last command\n\n" +
+                "Usage\n" +
+                "\tundo\n\n";
     }
 }

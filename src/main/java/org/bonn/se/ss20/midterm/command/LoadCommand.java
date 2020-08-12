@@ -59,6 +59,11 @@ public class LoadCommand implements CommandInterface {
 
     @Override
     public String usage() {
-        return null;//TODO
+        return "Command\n" +
+                "\tload - load user stories from a local file\n\n" +
+                "Usage\n" +
+                "\tload -> then specify a path or filename\n\n" +
+                "See also\n" +
+                "\tstore - save all user stories locally to your machine";
     }
 }

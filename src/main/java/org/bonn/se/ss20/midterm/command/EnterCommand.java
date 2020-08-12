@@ -71,7 +71,13 @@ public class EnterCommand implements CommandInterface {
 
     @Override
     public String usage() {
-        return null; //TODO
+        return "Command\n" +
+                "\tenter - enter a user story\n\n" +
+                "Usage\n" +
+                "\tenter -> then follow the instructions on screen\n\n" +
+                "See also\n" +
+                "\tstore - save all user stories locally to your machine\n" +
+                "\tload - load user stories from a local file";
     }
 
 }

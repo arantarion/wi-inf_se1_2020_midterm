@@ -37,6 +37,11 @@ public class AddElementCommand implements CommandInterface {
 
     @Override
     public String usage() {
-        return null;
+        return "Command\n" +
+                "\taddElement - Add an actor to the system\n\n" +
+                "Usage\n" +
+                "\taddElement <actor>\n\n" +
+                "See also\n" +
+                "\tactors - list all available actors";
     }
 }

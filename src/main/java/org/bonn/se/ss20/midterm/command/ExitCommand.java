@@ -20,6 +20,9 @@ public class ExitCommand implements CommandInterface {
 
     @Override
     public String usage() {
-        return null;//TODO
+        return "Command\n" +
+                "\texit - quit the program\n\n" +
+                "Usage\n" +
+                "\texit\n\n";
     }
 }

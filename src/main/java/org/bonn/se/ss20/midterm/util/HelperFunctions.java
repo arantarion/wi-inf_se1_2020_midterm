@@ -3,6 +3,8 @@ package org.bonn.se.ss20.midterm.util;
 import org.bonn.se.ss20.midterm.model.Container;
 import org.bonn.se.ss20.midterm.view.Console;
 
+import java.util.Arrays;
+
 /**
  * @author Henry Weckermann, Anton Drees
  */
@@ -77,6 +79,17 @@ public class HelperFunctions {
         for (String actor : Container.getInstance().getActors()) {
             System.out.println(actor);
         }
+    }
+
+    //var regex = /^([+-]?[1-9]\d*|0)$/
+
+    public static boolean isNumeric(String str) {
+        return str.matches("^([+-]?[1-9]\\d*|0)$");
+    }
+
+    public static boolean isValidStatus(String str) {
+        String[] status = {"done", "todo", "progress"};
+        return Arrays.asList(status).contains(str);
     }
 
 }

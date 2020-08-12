@@ -24,7 +24,7 @@ public class EnterCommand implements CommandInterface {
         us.setStrafe(HelperFunctions.readInt("Penalty: ", true));
         us.setRisiko(HelperFunctions.readInt("Risk: ", true));
         us.setAufwand(HelperFunctions.readInt("Effort: ", false));
-        us.setStatus("");
+        us.setStatus("todo");
 
         try {
             Container.getInstance().addUserStory(us);

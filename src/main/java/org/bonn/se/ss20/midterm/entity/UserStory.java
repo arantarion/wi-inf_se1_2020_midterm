@@ -30,7 +30,7 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
         setRisiko(risiko);
         setCompleted(false);
         setPriority(HelperFunctions.calculatePriority(mehrwert, strafe, auswand, risiko));
-        setStatus("");
+        setStatus("todo");
     }
 
     public UserStory() {
@@ -150,6 +150,11 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
 
     public void setStatus(String status) {
         this.status = status;
+
+        if (status.equals("done")) {
+            this.setCompleted(true);
+        }
+
     }
 
     @Override

@@ -114,7 +114,6 @@ public class Container {
         Actor Functions
      */
     public String addActor(String actor) {
-        // add(E e) does not throw an exception suggesting that it can't fail
         actors.add(actor);
         return actor;
     }

@@ -17,16 +17,32 @@ public class DumpCommand implements CommandInterface {
 
         //dump –status done
 
-        if (params.length == 0) {
-            new UserOutputDialog().display(Container.getInstance().getUserStories(false)
+        boolean state = false;
+        for (String s: params) {
+            if (s.equals("-onlyUndone")) {
+                state = true;
+                break;
+            }
+        }
+
+        if (params.length == 0 || params[0].equals("-onlyUndone")) {
+            new UserOutputDialog().display(Container.getInstance().getUserStories(state)
                     .stream()
                     .map(UserStoryDTO::new)
-                    .sorted(Comparator.comparing(UserStoryDTO::getId))
+                    .sorted(Comparator.comparing(UserStoryDTO::getPriorityDouble).reversed())
                     .collect(Collectors.toList()));
             return;
         }
 
 
+        if (params[0].equals("-asc")) {
+            new UserOutputDialog().display(Container.getInstance().getUserStories(state)
+                    .stream()
+                    .map(UserStoryDTO::new)
+                    .sorted(Comparator.comparing(UserStoryDTO::getPriorityDouble))
+                    .collect(Collectors.toList()));
+            return;
+        }
 
 
         if (params.length != 2 || !params[0].equals("-status") || !HelperFunctions.isValidStatus(params[1])) {

@@ -21,7 +21,7 @@ public class UserOutputDialog implements IDialog {
         }
 
         System.out.println("Userstories: \n");
-        Collections.sort(list);
+        //Collections.sort(list);
         list.forEach(System.out::println);
 
     }

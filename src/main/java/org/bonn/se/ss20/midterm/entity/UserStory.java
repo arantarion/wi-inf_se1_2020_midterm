@@ -150,11 +150,7 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
 
     public void setStatus(String status) {
         this.status = status;
-
-        if (status.equals("done")) {
-            this.setCompleted(true);
-        }
-
+        this.setCompleted(status.equals("done"));
     }
 
     @Override

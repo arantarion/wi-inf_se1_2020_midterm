@@ -2,6 +2,7 @@ package org.bonn.se.ss20.midterm.util.Analytics;
 
 import org.bonn.se.ss20.midterm.entity.UserStory;
 import org.bonn.se.ss20.midterm.model.Container;
+import org.bonn.se.ss20.midterm.util.HelperFunctions;
 
 import java.util.List;
 
@@ -72,10 +73,10 @@ public class AnalyticsUtility {
     private static void analyze(Integer id) {
         if (Container.getInstance().containsUserStory(id)) {
             int points = AnalyticsUtility.verdict(Container.getInstance().getUserStory(id));
-            System.out.println("Quality of user story with ID " + id + "is : " + points);
+            System.out.println("Quality of user story with ID " + id + " is : " + points + "%");
             System.out.println("It yields the following grade: " + getGrade(points));
         } else {
-            System.out.println("Can'd find user story with id: " + id);
+            System.out.println("Can't find user story with id: " + id);
         }
     }
 
@@ -83,7 +84,7 @@ public class AnalyticsUtility {
         List<UserStory> list = Container.getInstance().getUserStories(false);
         int points = list.stream().mapToInt(AnalyticsUtility::verdict).sum();
 
-        System.out.println("Average quality of your user stories: " + points / list.size());
+        System.out.println("Average quality of your user stories: " + points / list.size() + "%");
         System.out.println("Grade: " + getGrade(points / list.size()));
 
     }
@@ -92,12 +93,12 @@ public class AnalyticsUtility {
         UserStory userStory = Container.getInstance().getUserStory(id);
         System.out.println("\nDetails: ");
 
-        if (analyseText(userStory.getTitle(), "The user story is missing a title (-5)", 3, "The title contains to many words (-5)")
-                && analyseText(userStory.getDescription(), "The user story is missing a description (-10)", 50, "The description contains to many words (-5)")
-                && analyseText(userStory.getDetails(), "The user story is missing details (-15)", 30, "The details are to long (-5)")
-                && analyseText(userStory.getAkzeptanz(), "The user story is missing acceptance criteria (-15)", 30, "Acceptance criteria is too long (-5)")
-                && analyseText(userStory.getEpic(), "The user story is missing an epic (-5)", 3, "The epic is too long (-5)")
-                && analyzeActor(userStory.getActor(), "The user story is missing an actor (-10)", "The actor: %s is not registered in the system (-10)")) {
+        if (analyseText(userStory.getTitle(), "The user story is missing a title (-5%)", 3, "The title contains to many words (-5%)")
+                && analyseText(userStory.getDescription(), "The user story is missing a description (-10%)", 50, "The description contains to many words (-5%)")
+                && analyseText(userStory.getDetails(), "The user story is missing details (-15%)", 30, "The details are to long (-5%)")
+                && analyseText(userStory.getAkzeptanz(), "The user story is missing acceptance criteria (-15%)", 30, "Acceptance criteria is too long (-5%)")
+                && analyseText(userStory.getEpic(), "The user story is missing an epic (-5%)", 3, "The epic is too long (-5%)")
+                && analyzeActor(userStory.getActor(), "The user story is missing an actor (-10%)", "The actor '" + userStory.getActor() + "' is not registered in the system (-10%)")) {
             System.out.println("Everything seems fine. Great work");
         }
 
@@ -112,7 +113,7 @@ public class AnalyticsUtility {
         analyseText(userStory.getDetails(), "Fill a user story with details", 30, "Do not give too many details");
         analyseText(userStory.getAkzeptanz(), "Acceptance criteria is crucial for every user story", 30, "Do not make the acceptance criteria too long");
         analyseText(userStory.getEpic(), "Specify an epic for every user story", 3, "The epic should not be longer than three words");
-        analyzeActor(userStory.getActor(), "Specify an actor for your user story", "Add the actor %s to the list \n or change the actor (for more info see 'help'");
+        analyzeActor(userStory.getActor(), "Specify an actor for your user story", "Add the actor '" + userStory.getActor() + "' to the list or change the actor (for more info see 'help')");
     }
 
     private static boolean analyseText(String type, String warning, int maxWords, String hint) {
@@ -127,7 +128,7 @@ public class AnalyticsUtility {
     }
 
     private static int verdict(UserStory userStory) {
-        return 1000 - determineQuality(userStory);
+        return 100 - determineQuality(userStory);
     }
 
     private static int determineQuality(UserStory userStory) {
@@ -161,7 +162,7 @@ public class AnalyticsUtility {
             System.out.println(warning);
             return false;
         } else if (!Container.getInstance().getActors().contains(actor)) {
-            System.out.printf((warning2) + "%n", actor);
+            System.out.println(warning2);
             return false;
         }
         return true;
@@ -172,38 +173,50 @@ public class AnalyticsUtility {
             params = new String[0];
         }
 
-        if (params.length != 1 && params.length != 3 && params.length != 5) {
-            if (params[1].equals("-")) {
-                System.out.println("command not found. please see \"help analyze\"");
-            }
+        if (params.length == 0) {
+            System.out.println("invalid syntax. please see \"help analyze\"");
+            return;
         }
 
         switch (params.length) {
             case 1:
-                try {
-                    AnalyticsUtility.analyze(Integer.parseInt(params[0]));
-                } catch (NumberFormatException ex) {
-                    System.out.println("please use a valid id");
-                }
-            case 2:
-                if (params[0].equals("-") && params[1].equals("all")) {
+                if (HelperFunctions.isNumeric(params[0]) && Container.getInstance().containsUserStory(Integer.parseInt(params[0]))) {
+                    analyze(Integer.parseInt(params[0]));
+                    break;
+                } else if (params[0].equals("-all")) {
                     analyzeAll();
+                    break;
                 }
+                System.out.println("invalid syntax or user story ID. Usage: 'analyze <ID>' or for more info see \"help analyze\"");
                 break;
-            case 3:
-                analyze(Integer.parseInt(params[0])); //TODO catch
-                if (params[2].equals("details")) {
-                    printDetails(Integer.parseInt(params[0]));
-                }
-                break;
-            case 5:
-                analyze(Integer.parseInt(params[0])); //TODO catch
-                if (params[2].equals("details")) {
-                    printDetails(Integer.parseInt(params[0]));
 
-                    if (params[3].equals("-") && params[4].equals("hints")) {
-                        printHints(Integer.parseInt(params[0]));
-                    }
+            case 2:
+                if (HelperFunctions.isNumeric(params[0]) && Container.getInstance().containsUserStory(Integer.parseInt(params[0])) && params[1].equals("-details")) {
+                    analyze(Integer.parseInt(params[0]));
+                    printDetails(Integer.parseInt(params[0]));
+                    break;
+                } else if (params[1].equals("-hints")) {
+                    System.out.println("");
+                } else {
+                    System.out.println("invalid syntax or user story ID. Usage: 'analyze <ID> -details' or for more info see \"help analyze\"");
+                }
+
+                if (HelperFunctions.isNumeric(params[0]) && Container.getInstance().containsUserStory(Integer.parseInt(params[0])) && params[1].equals("-hints")) {
+                    analyze(Integer.parseInt(params[0]));
+                    printHints(Integer.parseInt(params[0]));
+                    break;
+                } else {
+                    System.out.println("invalid syntax or user story ID. Usage: 'analyze <ID> -hints' or for more info see \"help analyze\"");
+                }
+                break;
+
+            case 3:
+                if (HelperFunctions.isNumeric(params[0]) && Container.getInstance().containsUserStory(Integer.parseInt(params[0])) && params[1].equals("-details") && params[2].equals("-hints")) {
+                    analyze(Integer.parseInt(params[0]));
+                    printDetails(Integer.parseInt(params[0]));
+                    printHints(Integer.parseInt(params[0]));
+                } else {
+                    System.out.println("invalid syntax or user story ID. Usage: 'analyze <ID> -details -hints' or for more info see \"help analyze\"");
                 }
                 break;
         }

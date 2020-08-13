@@ -4,10 +4,7 @@ import org.bonn.se.ss20.midterm.entity.UserStory;
 import org.bonn.se.ss20.midterm.util.HelperFunctions;
 import org.bonn.se.ss20.midterm.util.LookAheadObjectInputStream;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -75,7 +72,7 @@ public class PersistenceManager {
             System.out.println(fileName + " loaded successfully! It contains " + Container.getInstance().size() + " user stories");
 
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Could not find file: " + fileName);
 
         } finally {
             if (loadFile != null) {

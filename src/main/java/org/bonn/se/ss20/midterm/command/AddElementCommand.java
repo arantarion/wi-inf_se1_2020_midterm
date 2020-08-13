@@ -18,7 +18,7 @@ public class AddElementCommand implements CommandInterface {
         if (name != null) {
             Container.getInstance().addHistory(clone());
         } else {
-            System.out.println("could not find this command. Please see \"HELP\"");
+            System.out.println("Invalid syntax. Usage: 'addElement -actor <actor>' or use the 'help' command.");
         }
 
     }

@@ -62,11 +62,11 @@ public class HelperFunctions {
     }
 
     public static String addActor(String[] params) {
-        if (params.length == 3) {
-            if (params[0].equals("-") && params[1].equals("actor")) {
-                if (Container.getInstance().containsActor(params[2])) {
-                    System.out.println("Registered the actor: " + params[2]);
-                    return Container.getInstance().addActor(params[2]);
+        if (params.length == 2) {
+            if (params[0].equals("-actor")) {
+                if (Container.getInstance().containsActor(params[1])) {
+                    System.out.println("Registered the actor: " + params[1]);
+                    return Container.getInstance().addActor(params[1]);
                 }
             }
         }
@@ -74,10 +74,16 @@ public class HelperFunctions {
     }
 
     public static void listAllActors() {
-        System.out.println("Registered actors: ");
 
-        for (String actor : Container.getInstance().getActors()) {
-            System.out.println(actor);
+        if (Container.getInstance().getActors().size() == 0) {
+            System.out.println("No actors are registered. Use 'addElement -actor <actor>' to add an actor");
+        } else {
+
+            System.out.println("Registered actors: ");
+
+            for (String actor : Container.getInstance().getActors()) {
+                System.out.println("\t" + actor);
+            }
         }
     }
 

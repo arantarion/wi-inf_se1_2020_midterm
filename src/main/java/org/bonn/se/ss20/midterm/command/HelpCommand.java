@@ -13,8 +13,8 @@ public class HelpCommand implements CommandInterface {
                 Container.getInstance().getHelp(params[0]);
             } catch (NullPointerException ex) {
                 System.out.println("Please specify a valid command\n");
-                System.out.println("List of available commands: ");
-                Container.getInstance().getAllCommands().forEach(System.out::println);
+                System.out.println("For all available commands use 'help': ");
+                //Container.getInstance().getAllCommands().forEach(System.out::println);
             }
         } else {
             System.out.println("Please specify only one command");

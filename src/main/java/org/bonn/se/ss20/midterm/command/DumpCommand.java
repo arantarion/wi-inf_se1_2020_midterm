@@ -90,9 +90,9 @@ public class DumpCommand implements CommandInterface {
         return "Command\n" +
                 "\tdump - Lists all user stories\n\n" +
                 "Usage\n" +
-                "\tdump [-onlyUndone] \t\t\t\t\t\t-> list all user stories sorted by priority descending\n" +
-                "\tdump -asc [-onlyUndone] \t\t\t\t-> list all user stories sorted by priority ascending\n" +
+                "\tdump [-onlyUndone] \t\t\t-> list all user stories sorted by priority descending\n" +
+                "\tdump -asc [-onlyUndone] \t\t-> list all user stories sorted by priority ascending\n" +
                 "\tdump -status <todo | progress | done> \t-> list all user stories with the specified status\n" +
-                "\t-onlyUndone \t\t\t\t\t\t\t-> lists only user stories that are either in 'progress' or 'todo'";
+                "\t-onlyUndone \t\t\t\t-> lists only user stories that are either in 'progress' or 'todo'";
     }
 }

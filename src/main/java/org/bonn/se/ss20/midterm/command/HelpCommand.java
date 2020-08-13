@@ -35,7 +35,7 @@ public class HelpCommand implements CommandInterface {
         return "Command\n" +
                 "\thelp - Prints help texts for commands\n\n" +
                 "Usage\n" +
-                "\thelp \t\t\t-> prints all help texts for all commands\n" +
+                "\thelp \t\t-> prints all help texts for all commands\n" +
                 "\thelp <command> \t-> prints the help text for a specific command\n\n" +
                 "Example\n" +
                 "\thelp actors -> prints the help for the actors command";

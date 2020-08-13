@@ -27,10 +27,10 @@ public class AnalyzeCommand implements CommandInterface {
         return "Command\n" +
                 "\tanalyze - analyzes the quality of your user stories\n\n" +
                 "Usage\n" +
-                "\tanalyze <id> \t\t\t\t\t-> Analyzes the quality of the user story with the given id\n" +
-                "\tanalyze <id> -details \t\t\t-> Analyzes the quality and returns a detailed explanation\n" +
+                "\tanalyze <id> \t\t\t-> Analyzes the quality of the user story with the given id\n" +
+                "\tanalyze <id> -details \t\t-> Analyzes the quality and returns a detailed explanation\n" +
                 "\tanalyze <id> -details -hints \t-> Analyzes, prints detailed explanation and shows hints to improve the quality\n" +
-                "\tanalyze -all \t\t\t\t\t-> Analyzes all user stories and calculates the average quality\n" +
+                "\tanalyze -all \t\t\t-> Analyzes all user stories and calculates the average quality\n" +
                 "Example\n" +
                 "\tanalyze 3 -details -hints\n" +
                 "\tanalyze 2 -details\n" +

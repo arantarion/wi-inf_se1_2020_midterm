@@ -30,7 +30,6 @@ public class UserInputDialog {
         Container.getInstance().addCommand("addElement", new AddElementCommand());
         Container.getInstance().addCommand("actors", new ActorCommand());
         Container.getInstance().addCommand("status", new StatusCommand());
-        Container.getInstance().addCommand("clear", new ClearConsoleCommand());
         Container.getInstance().addCommand("empty", new EmptyCommand());
     }
 

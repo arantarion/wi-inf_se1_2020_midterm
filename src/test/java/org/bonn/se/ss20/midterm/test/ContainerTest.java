@@ -13,7 +13,8 @@ import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContainerTest {
-    private final UserStory userStory = new UserStory();
+
+    private UserStory userStory = new UserStory();
 
     @Before
     public void setUp() throws ContainerException {
@@ -58,26 +59,9 @@ public class ContainerTest {
 
     @Test
     public void C_getUserStories() {
-        assertNotNull(Container.getInstance().getUserStories(false));
+        assertNotNull(Container.getInstance().getUserStories(true));
     }
 
-    //TODO
-    @Test
-    public void D_getUserStory() {
-        assertEquals(userStory, Container.getInstance().getUserStory(1));
-    }
-
-    @Test
-    public void E_setMyStories() {
-    }
-
-    @Test
-    public void F_getHighestId() {
-    }
-
-    @Test
-    public void G_containsUserStory() {
-    }
 
     @Test
     public void H_removeUserStory() {

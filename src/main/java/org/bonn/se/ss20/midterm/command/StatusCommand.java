@@ -48,9 +48,9 @@ public class StatusCommand implements CommandInterface {
     public String usage() {
         return "Command\n" +
                 "\tstatus - change the status of an user story\n" +
-                "possible states: done, progress, todo\n\n" +
+                "\t\t\tpossible states: done, progress, todo\n\n" +
                 "Usage\n" +
-                "\tstatus <user story id> <status>\n\n" +
+                "\tstatus <user story id> <status> -> sets the status of the specified user story\n\n" +
                 "See also\n" +
                 "\tdump - Lists all user stories";
     }

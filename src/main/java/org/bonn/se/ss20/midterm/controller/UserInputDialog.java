@@ -21,7 +21,6 @@ public class UserInputDialog {
     private void setUpCommands() {
         Container.getInstance().addCommand("enter", new EnterCommand());
         Container.getInstance().addCommand("dump", new DumpCommand());
-        Container.getInstance().addCommand("dumpUndone", new DumpUndoneCommand());
         Container.getInstance().addCommand("load", new LoadCommand());
         Container.getInstance().addCommand("store", new StoreCommand());
         Container.getInstance().addCommand("analyze", new AnalyzeCommand());

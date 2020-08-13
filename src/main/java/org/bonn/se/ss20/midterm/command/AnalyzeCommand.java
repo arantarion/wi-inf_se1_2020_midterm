@@ -32,8 +32,8 @@ public class AnalyzeCommand implements CommandInterface {
                 "\tanalyze <id> -details -hints \t-> Analyzes, prints detailed explanation and shows hints to improve the quality\n" +
                 "\tanalyze -all \t\t\t\t\t-> Analyzes all user stories and calculates the average quality\n" +
                 "Example\n" +
-                "\tanalyze 3 –details –hints\n" +
-                "\tanalyze 2 –details\n" +
+                "\tanalyze 3 -details -hints\n" +
+                "\tanalyze 2 -details\n" +
                 "\tanalyze -all\n" +
                 "See also\n" +
                 "\tTo add an actor use the \"addElement\" command";

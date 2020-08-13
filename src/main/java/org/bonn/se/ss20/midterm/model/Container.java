@@ -184,7 +184,7 @@ public class Container {
 
         for (CommandInterface command : result.values()) {
             System.out.println(command.usage());
-            System.out.println("\n------------------------------------------------------------------------------\n");
+            System.out.println("\n------------------------------------------------------------------------------------------------------------------------------------------\n");
         }
     }
 

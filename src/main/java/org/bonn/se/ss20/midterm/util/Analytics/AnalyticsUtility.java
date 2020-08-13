@@ -196,7 +196,7 @@ public class AnalyticsUtility {
                     printDetails(Integer.parseInt(params[0]));
                     break;
                 } else if (params[1].equals("-hints")) {
-                    System.out.println("");
+                    System.out.println();
                 } else {
                     System.out.println("invalid syntax or user story ID. Usage: 'analyze <ID> -details' or for more info see \"help analyze\"");
                 }

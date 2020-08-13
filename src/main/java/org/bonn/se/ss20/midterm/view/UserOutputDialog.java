@@ -3,7 +3,6 @@ package org.bonn.se.ss20.midterm.view;
 import org.bonn.se.ss20.midterm.dto.UserStoryDTO;
 import org.bonn.se.ss20.midterm.entity.UserStory;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ public class UserOutputDialog implements IDialog {
         }
 
         System.out.println("Userstories: \n");
-        for (UserStory us: list) {
+        for (UserStory us : list) {
             System.out.println(us);
             System.out.println("---------------------------------");
         }

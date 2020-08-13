@@ -22,6 +22,7 @@ public class Container {
     private Container() {
     }
 
+    //Singleton
     public static synchronized Container getInstance() {
         if (singleContainerInstance == null) {
             singleContainerInstance = new Container();
@@ -146,6 +147,8 @@ public class Container {
     /*
         Command Functions
      */
+
+    //adds an command to the list of supported commands
     public void addCommand(String cmdName, CommandInterface command) {
         commands.put(cmdName, command);
     }
@@ -159,10 +162,16 @@ public class Container {
         return command;
     }
 
+    //returns all commands
     public List<String> getAllCommands() {
         return commands.keySet().stream().sorted().collect(Collectors.toList());
     }
 
+
+    /*
+        Command Functions
+     */
+    //prints the complete help with the help texts of all commands
     public void getCompleteHelp() {
         System.out.print("\n");
 
@@ -179,6 +188,7 @@ public class Container {
         }
     }
 
+    //prints only the help text of a specified command
     public void getHelp(String command) {
         System.out.println(commands.get(command).usage());
     }

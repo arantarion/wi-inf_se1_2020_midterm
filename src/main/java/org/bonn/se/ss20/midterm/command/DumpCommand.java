@@ -16,7 +16,7 @@ public class DumpCommand implements CommandInterface {
     public void execute(String[] params) {
 
         boolean state = false;
-        for (String s: params) {
+        for (String s : params) {
             if (s.equals("-onlyUndone")) {
                 state = true;
                 break;
@@ -48,7 +48,7 @@ public class DumpCommand implements CommandInterface {
             return;
         }
 
-        switch(params[1]) {
+        switch (params[1]) {
             case "done":
                 List<UserStory> doneUS = Container.getInstance().getUserStories(false).stream()
                         .filter(item -> item.getStatus().equals("done"))

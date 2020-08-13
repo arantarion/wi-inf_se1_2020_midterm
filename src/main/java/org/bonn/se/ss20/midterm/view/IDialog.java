@@ -8,6 +8,7 @@ import java.util.List;
 public interface IDialog {
 
     void display(List<UserStoryDTO> list);
+
     void displayUS(List<UserStory> list);
 
 }

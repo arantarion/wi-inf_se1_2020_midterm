@@ -3,13 +3,11 @@ package org.bonn.se.ss20.midterm.command;
 import org.bonn.se.ss20.midterm.model.Container;
 import org.bonn.se.ss20.midterm.model.PersistenceManager;
 
-import java.io.FileNotFoundException;
-
 public class LoadCommand implements CommandInterface {
 
     @Override
     public void execute(String[] params) {
-            PersistenceManager.getInstance().load();
+        PersistenceManager.getInstance().load();
     }
 
     @Override

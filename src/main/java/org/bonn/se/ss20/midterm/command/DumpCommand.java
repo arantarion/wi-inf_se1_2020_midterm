@@ -15,8 +15,6 @@ public class DumpCommand implements CommandInterface {
     @Override
     public void execute(String[] params) {
 
-        //dump –status done
-
         boolean state = false;
         for (String s: params) {
             if (s.equals("-onlyUndone")) {
@@ -92,8 +90,9 @@ public class DumpCommand implements CommandInterface {
         return "Command\n" +
                 "\tdump - Lists all user stories\n\n" +
                 "Usage\n" +
-                "\tdump\n\n" +
-                "See also\n" +
-                "\tdumpUndone - list just undone user stories";
+                "\tdump [-onlyUndone] \t\t-> list all user stories sorted by priority descending\n" +
+                "\tdump -asc [-onlyUndone] \t\t-> list all user stories sorted by priority ascending\n" +
+                "\tdump -status <todo | progress | done> \t-> list all user stories with the specified status\n" +
+                "\t-onlyUndone \t\t-> lists only user stories that are either in 'progress' or 'todo'";
     }
 }

@@ -10,7 +10,7 @@ public class StatusCommand implements CommandInterface {
     public void execute(String[] params) {
 
         if (params.length != 2) {
-            System.out.println("invalid use of command. please see \"help analyze\"");
+            System.out.println("invalid use of command. please use 'status <id> <status>' or see 'help status' for possible states.");
             return;
         }
 

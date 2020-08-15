@@ -74,7 +74,12 @@ public class Container {
     }
 
     public boolean containsUserStory(Integer id) {
-        return getUserStory(id) != null;
+        try {
+            return getUserStory(id) != null;
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Could not find this user story");
+            return false;
+        }
     }
 
     public void removeUserStory(Integer id) {
@@ -116,7 +121,12 @@ public class Container {
     }
 
     public boolean containsActor(String actor) {
-        return actors.stream().noneMatch(tmp -> tmp.equals(actor));
+        for (String a : actors) {
+            if (a.equals(actor)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void removeActor(String name) {
@@ -157,7 +167,25 @@ public class Container {
         CommandInterface command = commands.get(cmdName);
         if (command == null) {
             System.out.println("The command " + cmdName + " is not supported");
-            return commands.get("empty");
+            return new CommandInterface() {
+                @Override
+                public void execute(String[] params) {
+                }
+
+                @Override
+                public void undo() {
+                }
+
+                @Override
+                public CommandInterface clone() {
+                    return null;
+                }
+
+                @Override
+                public String usage() {
+                    return null;
+                }
+            };
         }
         return command;
     }

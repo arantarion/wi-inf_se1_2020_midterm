@@ -64,7 +64,7 @@ public class HelperFunctions {
     public static String addActor(String[] params) {
         if (params.length == 2) {
             if (params[0].equals("-actor")) {
-                if (Container.getInstance().containsActor(params[1])) {
+                if (!Container.getInstance().containsActor(params[1])) {
                     System.out.println("Registered the actor: " + params[1]);
                     return Container.getInstance().addActor(params[1]);
                 }

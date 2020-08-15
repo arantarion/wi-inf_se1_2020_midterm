@@ -44,7 +44,7 @@ public class AnalyticsUtility {
         }
 
         //Actor
-        if (us.getActor().equals("") || Container.getInstance().containsActor(us.getActor())) {
+        if (us.getActor().equals("") || !Container.getInstance().containsActor(us.getActor())) {
             count += 10;
         }
 
@@ -94,12 +94,12 @@ public class AnalyticsUtility {
         System.out.println("\nDetails: ");
 
         if (analyseText(userStory.getTitle(), "The user story is missing a title (-5%)", 3, "The title contains to many words (-5%)")
-                && analyseText(userStory.getDescription(), "The user story is missing a description (-10%)", 50, "The description contains to many words (-5%)")
-                && analyseText(userStory.getDetails(), "The user story is missing details (-15%)", 30, "The details are to long (-5%)")
-                && analyseText(userStory.getAkzeptanz(), "The user story is missing acceptance criteria (-15%)", 30, "Acceptance criteria is too long (-5%)")
-                && analyseText(userStory.getEpic(), "The user story is missing an epic (-5%)", 3, "The epic is too long (-5%)")
-                && analyzeActor(userStory.getActor(), "The user story is missing an actor (-10%)", "The actor '" + userStory.getActor() + "' is not registered in the system (-10%)")) {
-            System.out.println("Everything seems fine. Great work");
+                & analyseText(userStory.getDescription(), "The user story is missing a description (-10%)", 50, "The description contains to many words (-5%)")
+                & analyseText(userStory.getDetails(), "The user story is missing details (-15%)", 30, "The details are to long (-5%)")
+                & analyseText(userStory.getAkzeptanz(), "The user story is missing acceptance criteria (-15%)", 30, "Acceptance criteria is too long (-5%)")
+                & analyseText(userStory.getEpic(), "The user story is missing an epic (-5%)", 3, "The epic is too long (-5%)")
+                & analyzeActor(userStory.getActor(), "The user story is missing an actor (-10%)", "The actor '" + userStory.getActor() + "' is not registered in the system (-10%)")) {
+            System.out.println("Everything seems fine. Great work.");
         }
 
     }
@@ -138,11 +138,11 @@ public class AnalyticsUtility {
     private static String getGrade(Integer points) {
         if (points == 100) {
             return "1.0 - Excellent";
-        } else if (points >= 75) {
+        } else if (points >= 85) {
             return "2.0 - Very good";
-        } else if (points >= 50) {
+        } else if (points >= 60) {
             return "3.0 - Good";
-        } else if (points >= 25) {
+        } else if (points >= 35) {
             return "4.0 - Mediocre";
         } else {
             return "5.0 - Abysmal";

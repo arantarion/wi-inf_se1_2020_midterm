@@ -164,9 +164,35 @@ public class UserStory implements java.io.Serializable, Comparable<UserStory> {
     }
 
     public String toString() {
-        return "User Story " + this.getId() + "\n" +
+        return "User Story ID: " + this.getId() + "\n" +
                 "Title: " + this.getTitle() + "\n" +
                 "Priority: " + this.getPriority() + "\n" +
                 "Status: " + this.getStatus();
     }
+
+    public void toStringDetail() {
+        System.out.println("User Story ID: " + id + "\n" +
+                "Title: " + title + "\n" +
+                "Description: " + description + "\n" +
+                "Details: " + details + "\n" +
+                "Aceptance Criteria: " + akzeptanz + "\n" +
+                "Epic: " + epic + "\n" +
+                "Actor: " + actor + "\n" +
+                "Priority: " + getPriority() + "\n" +
+                "Status: " + getStatus() +
+                "\n---------------------------------");
+    }
+
+    /*
+    private Integer id;
+    private String title, description, details, akzeptanz, epic, actor;
+    private Integer mehrwert;
+    private Integer strafe;
+    private Integer aufwand;
+    private Integer risiko;
+    private double priority;
+    private boolean completed;
+    private String status;
+     */
+
 }

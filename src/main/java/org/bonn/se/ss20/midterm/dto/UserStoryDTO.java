@@ -65,7 +65,7 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
 
     @Override
     public String toString() {
-        return "User Story: " + id + "\n" +
+        return "User Story ID: " + id + "\n" +
                 "Title: " + title + "\n" +
                 "Priority: " + getPriority() + "\n" +
                 "Status: " + getStatus() +

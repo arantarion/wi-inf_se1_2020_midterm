@@ -30,7 +30,7 @@ public class PersistenceManager {
     public void store() {
         ObjectOutputStream storeFile;
         String fileExtension = ".data";
-        String fileName = HelperFunctions.readText("Please specify a filename or path (no quotes). You do not need an file-extension: ") + fileExtension;
+        String fileName = HelperFunctions.readText("Now please specify a filename or path (no quotes). You do not need an file-extension: ") + fileExtension;
 
         try {
 
@@ -60,7 +60,7 @@ public class PersistenceManager {
         LookAheadObjectInputStream loadFile = null;
         //Console userConsole = new Console();
         final String fileExtension = ".data";
-        String fileName = HelperFunctions.readText("Please specify a filename or path (no quotes): ") + fileExtension;
+        String fileName = HelperFunctions.readText("Now please specify a filename or path (no quotes). No file extension is needed.") + fileExtension;
 
         try {
             Set<String> whitelist = new HashSet<>(Arrays.asList("java.util.ArrayList", "org.bonn.se.ss20.midterm.entity.UserStory",

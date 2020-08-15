@@ -42,6 +42,21 @@ public class DumpCommand implements CommandInterface {
             return;
         }
 
+        if (params[0].equals("-details")) {
+            Container.getInstance().getUserStories(false)
+                    .stream()
+                    .sorted(Comparator.comparing(UserStory::getPriorityDouble))
+                    .forEach(UserStory::toStringDetail);
+            return;
+        }
+
+        if (HelperFunctions.isNumeric(params[0])
+                && Container.getInstance().containsUserStory(Integer.parseInt(params[0]))
+                && params[1].equals("-details")) {
+            Container.getInstance().getUserStory(Integer.parseInt(params[0])).toStringDetail();
+            return;
+        }
+
 
         if (params.length != 2 || !params[0].equals("-status") || !HelperFunctions.isValidStatus(params[1])) {
             System.out.println("invalid use of command. please see \"help dump\"");
@@ -92,6 +107,8 @@ public class DumpCommand implements CommandInterface {
                 "Usage\n" +
                 "\tdump [-onlyUndone] \t\t\t-> list all user stories sorted by priority descending\n" +
                 "\tdump -asc [-onlyUndone] \t\t-> list all user stories sorted by priority ascending\n" +
+                "\tdump -details \t\t-> lists all user stories with all their detials\n" +
+                "\tdump <ID> -details \t\t-> list all details of a specified user story\n" +
                 "\tdump -status <todo | progress | done> \t-> list all user stories with the specified status\n" +
                 "\t-onlyUndone \t\t\t\t-> lists only user stories that are either in 'progress' or 'todo'";
     }

@@ -94,8 +94,8 @@ public class AnalyticsUtility {
         System.out.println("\nDetails: ");
 
         if (analyseText(userStory.getTitle(), "The user story is missing a title (-5%)", 3, "The title contains to many words (-5%)")
-                & analyseText(userStory.getDescription(), "The user story is missing a description (-10%)", 50, "The description contains to many words (-5%)")
-                & analyseText(userStory.getDetails(), "The user story is missing details (-15%)", 30, "The details are to long (-5%)")
+                & analyseText(userStory.getDescription(), "The user story is missing a description (-10% to -15%)", 50, "The description contains to many words (-5%)")
+                & analyseText(userStory.getDetails(), "The user story is missing details (-15% to -20%)", 30, "The details are to long (-5%)")
                 & analyseText(userStory.getAkzeptanz(), "The user story is missing acceptance criteria (-15%)", 30, "Acceptance criteria is too long (-5%)")
                 & analyseText(userStory.getEpic(), "The user story is missing an epic (-5%)", 3, "The epic is too long (-5%)")
                 & analyzeActor(userStory.getActor(), "The user story is missing an actor (-10%)", "The actor '" + userStory.getActor() + "' is not registered in the system (-10%)")) {

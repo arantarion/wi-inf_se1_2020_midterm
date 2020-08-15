@@ -39,11 +39,16 @@ public class Container {
     }
 
     public UserStory getUserStory(Integer id) {
-        return myStories.stream()
-                .filter(story -> story.getId() != null)
-                .filter(story -> story.getId().equals(id))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("User Story with ID " + id + " not found"));
+        try {
+            return myStories.stream()
+                    .filter(story -> story.getId() != null)
+                    .filter(story -> story.getId().equals(id))
+                    .findAny()
+                    .orElseThrow(() -> new IllegalArgumentException("User Story with ID " + id + " not found"));
+        } catch (IllegalArgumentException ex) {
+            System.out.println();
+            return null;
+        }
     }
 
     public void setMyStories(List<UserStory> stories) {

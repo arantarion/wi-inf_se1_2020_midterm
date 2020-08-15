@@ -67,7 +67,7 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
     public String toString() {
         return "User Story ID: " + id + "\n" +
                 "Title: " + title + "\n" +
-                "Priority: " + getPriorityDouble() + "\n" +
+                "Priority: " + getPriority() + "\n" +
                 "Status: " + getStatus() +
                 "\n---------------------------------";
     }

@@ -29,12 +29,7 @@ public class Console {
         System.out.print("> ");
 
         try {
-            String userInput = bufferedInput.readLine();
-            if (userInput.contains("addElement")) {
-                return userInput;
-            } else {
-                return userInput.toLowerCase();
-            }
+            return bufferedInput.readLine();
         } catch (IOException ex) {
             System.out.println("Something went horribly wrong in the Console!");
             ex.printStackTrace();

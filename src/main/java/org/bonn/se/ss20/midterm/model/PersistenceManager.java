@@ -13,6 +13,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class PersistenceManager {
 
     private static PersistenceManager singlePersistenceManagerInstance = null;

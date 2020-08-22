@@ -1,5 +1,9 @@
 package org.bonn.se.ss20.midterm.command;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class ExitCommand implements CommandInterface {
 
     @Override

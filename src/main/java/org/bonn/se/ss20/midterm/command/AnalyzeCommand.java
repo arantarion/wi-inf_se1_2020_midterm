@@ -3,6 +3,10 @@ package org.bonn.se.ss20.midterm.command;
 import org.bonn.se.ss20.midterm.util.Analytics.AnalyticsUtility;
 import org.bonn.se.ss20.midterm.util.Analytics.Strategy;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class AnalyzeCommand implements CommandInterface {
 
     @Override

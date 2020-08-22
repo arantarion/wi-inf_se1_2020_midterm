@@ -1,5 +1,9 @@
 package org.bonn.se.ss20.midterm.util.Analytics;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class Strategy {
 
     private AnalyticsUtility strategy = null;

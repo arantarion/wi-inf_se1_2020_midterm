@@ -3,6 +3,10 @@ package org.bonn.se.ss20.midterm.command;
 import org.bonn.se.ss20.midterm.model.Container;
 import org.bonn.se.ss20.midterm.model.PersistenceManager;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class LoadCommand implements CommandInterface {
 
     @Override

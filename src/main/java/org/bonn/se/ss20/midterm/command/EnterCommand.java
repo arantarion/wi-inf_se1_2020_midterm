@@ -6,6 +6,10 @@ import org.bonn.se.ss20.midterm.model.Container;
 import org.bonn.se.ss20.midterm.util.HelperFunctions;
 import org.bonn.se.ss20.midterm.view.Console;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class EnterCommand implements CommandInterface {
 
     private int id;

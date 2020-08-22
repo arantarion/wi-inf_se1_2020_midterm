@@ -11,6 +11,10 @@ import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContainerTest {
 

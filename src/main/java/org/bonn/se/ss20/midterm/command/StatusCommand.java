@@ -4,6 +4,10 @@ import org.bonn.se.ss20.midterm.entity.UserStory;
 import org.bonn.se.ss20.midterm.model.Container;
 import org.bonn.se.ss20.midterm.util.HelperFunctions;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class StatusCommand implements CommandInterface {
 
     @Override

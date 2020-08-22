@@ -2,6 +2,10 @@ package org.bonn.se.ss20.midterm.command;
 
 import org.bonn.se.ss20.midterm.model.PersistenceManager;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public class StoreCommand implements CommandInterface {
 
     @Override

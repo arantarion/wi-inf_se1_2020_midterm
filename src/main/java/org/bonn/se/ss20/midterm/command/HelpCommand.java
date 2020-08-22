@@ -1,5 +1,9 @@
 package org.bonn.se.ss20.midterm.command;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 import org.bonn.se.ss20.midterm.model.Container;
 
 public class HelpCommand implements CommandInterface {

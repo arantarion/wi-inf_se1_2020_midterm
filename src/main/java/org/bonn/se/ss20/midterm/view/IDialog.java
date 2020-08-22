@@ -5,6 +5,10 @@ import org.bonn.se.ss20.midterm.entity.UserStory;
 
 import java.util.List;
 
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
+
 public interface IDialog {
 
     void display(List<UserStoryDTO> list);

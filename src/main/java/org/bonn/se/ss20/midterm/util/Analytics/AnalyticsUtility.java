@@ -6,8 +6,11 @@ import org.bonn.se.ss20.midterm.util.HelperFunctions;
 
 import java.util.List;
 
-public class AnalyticsUtility {
+/**
+ * @author Henry Weckermann, Anton Drees
+ */
 
+public class AnalyticsUtility {
 
     private static int analyzeShortcommings(UserStory us) {
         int count = 0;
